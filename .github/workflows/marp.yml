@@ -8,9 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Marp CLI
-        uses: docker://marpteam/marp-cli:v3.4.0
+      - uses: actions/checkout@v4
+
+      - name: Convert Markdown to PPTX
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workdir marpteam/marp-cli:v3.4.0 \
+          --pptx --allow-local-files /workdir/*.md -o /workdir/output/
+
+      - name: Upload PPT
+        uses: actions/upload-artifact@v4
         with:
-          files: "*.md"
-          output: pptx
+          name: marp-ppt
+          path: output/
