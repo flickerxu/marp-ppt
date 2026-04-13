@@ -1,0 +1,16 @@
+name: Marp Build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Marp CLI
+        uses: marp-team/marp-cli-action@v3
+        with:
+          files: slides.md
+          output: pptx
