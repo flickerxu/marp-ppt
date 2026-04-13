@@ -12,5 +12,5 @@ jobs:
       - name: Marp CLI
         uses: marp-team/marp-cli-action@v3
         with:
-          files: "半导体前道材料vs设备涨幅对比分析.md"
+          files: "*.md"
           output: pptx
